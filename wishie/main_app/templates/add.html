@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form class="pure-form" method="post" action="{% url 'add_item' %}">
+    {% csrf_token %}
+    <table>
+        {{ item_form.as_p}}
+    </table>
+    <hr>
+    <h4><input type="submit" value="Submit That Widget" class="pure-button"></h4>
+    <hr>
+</form>
+
+{% endblock %}

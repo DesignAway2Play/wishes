@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<center>
+    <h1>Wish List Items</h1>
+    {% if items|length == 0 %}
+    <h3>
+        <hr>No Wishes Items Exist</h3>
+    </hr>
+
+    {% else%}
+    {% for w in items %}
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <th>{{ w.desc }}</th>
+                <th>
+                    <form id="my_form" method="post" action="{% url 'ItemDelete'  w.id %}">
+                        <a style="color:red" href="javascript:{}"
+                            onclick="document.getElementById('my_form').submit();">X</a>
+                </th>
+                {% csrf_token %}
+
+                <input type="hidden" value="Submit Your Wish" class="btn">
+                </form>
+            </tr>
+        </thead>
+    </table>
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'add_item' %}"><button class="pure-button">Add a Wish Item</button></a>
+
+</center>
+{% endblock %}
